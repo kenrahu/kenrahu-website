@@ -43,7 +43,6 @@ export default function Hero() {
         {/* Trust stats */}
         <div className="flex flex-wrap gap-6 sm:gap-10">
           {[
-            { value: '50+', label: 'Businesses Assessed' },
             { value: '7', label: 'AI Tools Built' },
             { value: 'Free', label: 'Readiness Assessment Available' },
           ].map((stat) => (

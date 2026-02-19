@@ -1,3 +1,5 @@
+import rahulPhoto from '../assets/rahul.jpeg'
+
 const bullets = [
   {
     icon: (
@@ -61,17 +63,15 @@ export default function About() {
             </div>
           </div>
 
-          {/* Avatar / Photo placeholder */}
+          {/* Photo */}
           <div className="flex justify-center md:justify-end">
             <div className="relative">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-2xl bg-surface border border-[#2A2A2A] flex items-center justify-center">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-20 h-20 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
-                    <span className="text-accent text-2xl font-bold">RK</span>
-                  </div>
-                  <p className="text-muted text-sm">Rahul Kendale</p>
-                  <p className="text-muted/60 text-xs">AI Audit & Transformation Partner</p>
-                </div>
+              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-[#2A2A2A]">
+                <img
+                  src={rahulPhoto}
+                  alt="Rahul Kendale"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               {/* Decorative glow */}
               <div className="absolute -inset-1 rounded-2xl bg-accent/5 -z-10 blur-xl"></div>
