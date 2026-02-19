@@ -12,7 +12,9 @@ export default function Footer() {
           <span className="text-muted/40 text-xs">Built with AI</span>
 
           <a
-            href="#linkedin"
+            href="https://www.linkedin.com/in/kendalerahul/"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="text-muted/60 hover:text-accent transition-colors"
           >

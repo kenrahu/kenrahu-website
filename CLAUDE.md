@@ -6,7 +6,7 @@
 - **Focus:** Helping small businesses adopt AI the right way — assess first, invest second
 - **Email:** rahul@kenrahu.com
 - **Domain:** kenrahu.com
-- **LinkedIn:** (to be added)
+- **LinkedIn:** https://www.linkedin.com/in/kendalerahul/
 - **Calendly:** https://calendly.com/kendale-rahul/30min
 
 ---
@@ -108,7 +108,7 @@ kenrahu-website/
 
 ## Things Still To Do
 - [ ] Add real headshot photo (replace RK initials avatar in About.jsx)
-- [ ] Add LinkedIn profile URL (Footer.jsx — currently `#linkedin`)
+- [x] Add LinkedIn profile URL (https://www.linkedin.com/in/kendalerahul/)
 - [ ] Build ROI Calculator tool
 - [ ] Build Roadmap Prioritizer tool
 - [ ] Add blog / case studies section
