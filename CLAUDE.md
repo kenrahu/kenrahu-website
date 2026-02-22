@@ -107,12 +107,76 @@ kenrahu-website/
 ---
 
 ## Things Still To Do
-- [ ] Add real headshot photo (replace RK initials avatar in About.jsx)
-- [x] Add LinkedIn profile URL (https://www.linkedin.com/in/kendalerahul/)
-- [ ] Build ROI Calculator tool
-- [ ] Build Roadmap Prioritizer tool
+
+### Website & Tools
+- [x] Add headshot photo ✅
+- [x] Add LinkedIn profile URL ✅
+- [ ] Fix mobile responsiveness (test on real phone first)
+- [ ] Build ROI Calculator → kenrahu.com/tools/roi-calculator
+- [ ] Build Roadmap Prioritizer → kenrahu.com/tools/roadmap-prioritizer
 - [ ] Add blog / case studies section
-- [ ] Set up rahul@kenrahu.com email inbox (domain email via GoDaddy or Google Workspace)
+- [ ] Set up rahul@kenrahu.com email inbox
+
+### PM Tools to Build (priority order)
+- [ ] PRD Generator → kenrahu.com/tools/prd-generator (HIGHEST PRIORITY)
+- [ ] User Story Generator → kenrahu.com/tools/user-stories
+- [ ] OKR Generator → kenrahu.com/tools/okr-generator
+- [ ] Sprint Retrospective Analyzer
+- [ ] Stakeholder Update Writer
+- [ ] PM Interview Prep Tool (can monetize)
+
+### n8n Automations to Build
+- [ ] LinkedIn comment "GUIDE" → auto DM with PDF link
+- [ ] LinkedIn post → auto post to X
+- [ ] Quiz form results → Rahul's email notification
+- [ ] New Calendly booking → WhatsApp notification to Rahul
+- [ ] Morning email summary → WhatsApp
+- [ ] Credit card due date reminder (read Gmail → WhatsApp alert)
+
+### Learning & Strategy (Rahul's reminders)
+- [ ] REMINDER: Study Chris Donnelly's LinkedIn strategy
+- [ ] REMINDER: Plan AI Product Management skills roadmap
+- [ ] Build content strategy (see section below)
+
+---
+
+## n8n Setup
+- Running locally via: `n8n start` (v2.8.3)
+- Accessible at: http://localhost:5678
+- Note: Only runs when Mac is ON — move to Railway/Render for 24/7
+- Docker compose file exists at: ~/n8n-docker/docker-compose.yml
+
+---
+
+## Content Strategy (4-Week LinkedIn Plan)
+
+### Week 1 (LIVE ✅)
+- Post: "Built my website in 2 days using AI" → Comment GUIDE
+- X post: Same content, 280 char version
+
+### Week 2
+- Carousel: 8 slides — visual story of what was built, mistakes, result
+- Canva dark theme matching kenrahu.com brand
+
+### Week 3
+- Giveaway post: "Comment GUIDE — I'll DM you the free PDF"
+- n8n auto-DM should be live by this point
+
+### Week 4
+- PDF guide delivered via n8n automation
+- Follow-up email sequence → discovery call
+
+### Content Pillars (ongoing)
+1. AI Tool builds — show what you're building
+2. PM insights — 17 years of experience as content
+3. Honest takes — mistakes, learnings (high engagement)
+4. Client wins — anonymised case studies
+5. Free value — tips, frameworks, tools
+
+### Chris Donnelly Strategy (TO STUDY)
+- [ ] Review Chris Donnelly's LinkedIn posting style
+- [ ] Analyse his hook formats
+- [ ] Apply to Rahul's content calendar
 
 ---
 
