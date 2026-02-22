@@ -1,23 +1,20 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 bg-bg">
-      <div className="max-w-4xl mx-auto w-full">
+    <section className="min-h-screen flex flex-col justify-center pt-24 pb-16 bg-bg overflow-hidden">
+      <div className="max-w-4xl mx-auto w-full px-6">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-surface border border-[#2A2A2A] rounded-full px-4 py-1.5 mb-8">
-          <span className="w-2 h-2 rounded-full bg-accent inline-block"></span>
-          <span className="text-muted text-sm">AI Audit & Transformation Partner</span>
+        <div className="inline-flex items-center gap-2 bg-surface border border-[#2A2A2A] rounded-full px-3 py-1.5 mb-8 max-w-full">
+          <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0"></span>
+          <span className="text-muted text-xs sm:text-sm">AI Audit & Transformation Partner</span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-          Your{' '}
-          <span className="text-accent">AI Audit &</span>
-          <br />
-          Transformation Partner
+        <h1 className="text-xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+          Your <span className="text-accent">AI Audit &</span> Transformation Partner
         </h1>
 
         {/* Subheadline */}
-        <p className="text-muted text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
+        <p className="text-muted text-base sm:text-xl max-w-2xl mb-10 leading-relaxed">
           I help businesses understand where they stand with AI — and exactly what to do next.
         </p>
 
@@ -55,7 +52,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="max-w-4xl mx-auto w-full mt-16 flex justify-start">
+      <div className="max-w-4xl mx-auto w-full px-6 mt-16 flex justify-start">
         <div className="flex flex-col items-center gap-1.5 opacity-40">
           <span className="text-xs text-muted">scroll</span>
           <div className="w-px h-8 bg-muted animate-bounce"></div>
