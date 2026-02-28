@@ -10,12 +10,12 @@ const tools = [
     badge: null,
   },
   {
-    title: 'ROI Calculator',
-    description: 'Estimate the return on investment before committing to an AI tool or initiative. Know your numbers before you invest.',
-    status: 'soon',
-    link: null,
-    linkLabel: null,
-    badge: 'Coming Soon',
+    title: 'PRD Generator',
+    description: 'Generate a complete, professional Product Requirements Document in seconds. Powered by Claude AI — just answer 7 questions.',
+    status: 'live',
+    link: '/tools/prd-generator',
+    linkLabel: 'Generate Your PRD →',
+    badge: null,
   },
   {
     title: 'Roadmap Prioritizer',
