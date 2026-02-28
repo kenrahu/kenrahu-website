@@ -76,6 +76,6 @@ Return ONLY a valid JSON object with exactly these 7 keys. No markdown, no expla
     return res.status(200).json({ prd })
   } catch (error) {
     console.error('PRD generation error:', error)
-    return res.status(500).json({ error: 'Failed to generate PRD. Please try again.' })
+    return res.status(500).json({ error: error.message || 'Failed to generate PRD. Please try again.' })
   }
 }
