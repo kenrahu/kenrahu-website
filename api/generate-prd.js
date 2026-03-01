@@ -1,23 +1,16 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-
 // In-memory rate limiter: { ip: { count, resetAt } }
 const rateLimitMap = new Map()
-const LIMIT = 3          // max 3 PRDs per IP
-const WINDOW_MS = 24 * 60 * 60 * 1000  // per 24 hours
+const LIMIT = 3
+const WINDOW_MS = 24 * 60 * 60 * 1000
 
 function isRateLimited(ip) {
   const now = Date.now()
   const entry = rateLimitMap.get(ip)
-
   if (!entry || now > entry.resetAt) {
     rateLimitMap.set(ip, { count: 1, resetAt: now + WINDOW_MS })
     return false
   }
-
   if (entry.count >= LIMIT) return true
-
   entry.count++
   return false
 }
@@ -27,7 +20,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  // Rate limit check
   const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket?.remoteAddress || 'unknown'
   if (isRateLimited(ip)) {
     return res.status(429).json({ error: 'You have reached the daily limit of 3 PRDs. Please come back tomorrow.' })
@@ -40,11 +32,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
-
-    const prompt = `You are an expert Product Manager with 15+ years of experience writing PRDs for top tech companies.
-
-Generate a professional, detailed PRD based on these inputs:
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an expert Product Manager with 15+ years of experience writing PRDs for top tech companies. Always return valid JSON only — no markdown, no explanation, no code blocks.',
+          },
+          {
+            role: 'user',
+            content: `Generate a professional PRD based on these inputs:
 
 Product Name: ${productName}
 One-liner: ${oneLiner}
@@ -54,7 +57,7 @@ Goals & Success Metrics: ${goals}
 Must-have Features: ${features}
 Timeline: ${timeline}
 
-Return ONLY a valid JSON object with exactly these 7 keys. No markdown, no explanation, no code blocks, just raw JSON:
+Return ONLY a valid JSON object with exactly these 7 keys:
 {
   "problemStatement": "3-4 sentences clearly articulating the problem, who faces it, and why it matters",
   "goalsAndMetrics": "Bullet list of 4-5 specific, measurable goals and success metrics",
@@ -63,14 +66,22 @@ Return ONLY a valid JSON object with exactly these 7 keys. No markdown, no expla
   "outOfScope": "Bullet list of 4-5 things explicitly NOT included in this version",
   "timeline": "Phase-by-phase breakdown of the ${timeline} timeline with milestones",
   "risksAndAssumptions": "Bullet list of 4-5 key risks and assumptions with mitigation notes"
-}`
+}`,
+          },
+        ],
+        temperature: 0.7,
+        max_tokens: 2000,
+      }),
+    })
 
-    const result = await model.generateContent(prompt)
-    const raw = result.response.text().trim()
+    const data = await response.json()
 
-    // Strip markdown code blocks if Gemini wraps in ```json ... ```
+    if (!response.ok) {
+      return res.status(500).json({ error: data.error?.message || 'Failed to generate PRD.' })
+    }
+
+    const raw = data.choices[0].message.content.trim()
     const cleaned = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim()
-
     const prd = JSON.parse(cleaned)
 
     return res.status(200).json({ prd })
