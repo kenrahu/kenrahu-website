@@ -25,6 +25,30 @@
 
 ---
 
+## Session — 2026-03-01 / 03-02
+
+### Gemini API — Do NOT use
+- Free tier quota is 0 for all models on Rahul's Google account
+- Tried: gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite — all fail
+- Root cause: Google account linked to paid workspace, no free tier access
+- **Rule: Never use Gemini API for kenrahu.com tools**
+
+### Groq API — Investigate before using
+- Key tested locally and works ✅
+- But Vercel env var kept failing — unclear if key entry issue or Vercel bug
+- If using Groq again: test locally first, then verify env var carefully in Vercel
+
+### Big lesson — Build without API keys where possible
+- Any tool that needs an external API = risk of failure, quota issues, billing
+- ROI Calculator, Roadmap Prioritizer, OKR Generator → pure logic, no API needed
+- **Rule: Default to no-API tools. Only use API when absolutely necessary.**
+
+### Always commit ALL files before ending session
+- PRD Generator session lost: App.jsx, Tools.jsx, PRDGenerator.jsx, api/, components/prd/
+- **Rule: Run `git status` before ending every session. Commit everything.**
+
+---
+
 ## Session — 2026-02-28
 
 ### CRITICAL LESSON — Always commit ALL changed files before ending a session
