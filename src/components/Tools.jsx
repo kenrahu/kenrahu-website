@@ -18,6 +18,14 @@ const tools = [
     badge: null,
   },
   {
+    title: 'Experience Calculator',
+    description: 'Add each company you\'ve worked at and get your total experience instantly — broken down by years, months, and skill.',
+    status: 'live',
+    link: '/tools/experience-calculator',
+    linkLabel: 'Calculate Now →',
+    badge: null,
+  },
+  {
     title: 'Roadmap Prioritizer',
     description: 'Rank and prioritise your AI initiatives based on effort, impact, and readiness. Build a roadmap that makes sense.',
     status: 'soon',
