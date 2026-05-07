@@ -31,7 +31,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  if (!process.env.GROQ_API_KEY) {
+  const groqKey = process.env.GROQ_API_KEY || process.env.GROK
+  if (!groqKey) {
     return res.status(500).json({ error: 'GROQ_API_KEY is not set in environment variables' })
   }
 
@@ -39,7 +40,7 @@ export default async function handler(req, res) {
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        'Authorization': `Bearer ${groqKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

@@ -106,12 +106,32 @@ kenrahu-website/
 
 ---
 
+## Deployment Validation Checklist
+*(Run through this after every deploy or DNS change)*
+
+### DNS / Domain
+- [ ] kenrahu.com loads the Vercel site (NOT GoDaddy "Launching Soon")
+- [ ] GoDaddy DNS: A record `@` → `76.76.21.21`
+- [ ] GoDaddy DNS: CNAME `www` → `cname.vercel-dns.com`
+- [ ] Vercel dashboard: both `kenrahu.com` and `www.kenrahu.com` added under Domains
+- [ ] SSL certificate is active (padlock shows in browser)
+
+### After Every Code Push
+- [ ] Vercel auto-deploy triggered (check Vercel dashboard)
+- [ ] Live site at kenrahu.com reflects changes
+- [ ] Test on real iPhone — not just browser DevTools
+- [ ] All CTA links work (Calendly, quiz, email)
+- [ ] No content cut off on mobile
+
+---
+
 ## Things Still To Do
 
 ### Website & Tools
 - [x] Add headshot photo ✅
 - [x] Add LinkedIn profile URL ✅
-- [ ] Fix mobile responsiveness (test on real phone first)
+- [ ] Fix DNS — kenrahu.com showing GoDaddy "Launching Soon" page (not Vercel)
+- [ ] Verify mobile layout on real iPhone after DNS fix
 - [ ] Build ROI Calculator → kenrahu.com/tools/roi-calculator
 - [ ] Build Roadmap Prioritizer → kenrahu.com/tools/roadmap-prioritizer
 - [ ] Add blog / case studies section
