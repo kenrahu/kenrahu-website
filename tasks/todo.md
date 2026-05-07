@@ -14,5 +14,5 @@
 - [x] Modify src/App.jsx → add route
 - [x] Modify src/components/Tools.jsx → update card to live link
 - [x] Build passes — zero errors ✅
-- [ ] Add ANTHROPIC_API_KEY to Vercel env vars
-- [ ] Deploy + verify live on kenrahu.com
+- [x] Add GROQ_API_KEY to Vercel env vars ✅
+- [x] Deploy + verify live on kenrahu.com ✅

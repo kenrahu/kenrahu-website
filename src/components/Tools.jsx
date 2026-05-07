@@ -26,6 +26,14 @@ const tools = [
     badge: null,
   },
   {
+    title: 'AI Candidate Screener',
+    description: 'Set your criteria, generate a shareable link, and let AI screen candidates — MCQs, profile check, and tech questions in one flow.',
+    status: 'live',
+    link: '/tools/cv-screening',
+    linkLabel: 'Try It Free →',
+    badge: null,
+  },
+  {
     title: 'Roadmap Prioritizer',
     description: 'Rank and prioritise your AI initiatives based on effort, impact, and readiness. Build a roadmap that makes sense.',
     status: 'soon',

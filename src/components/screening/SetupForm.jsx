@@ -1,0 +1,110 @@
+import { useState } from 'react'
+
+const INITIAL = {
+  role: '',
+  topic: '',
+  techStack: '',
+  minExp: '',
+  maxExp: '',
+  requiredLocation: '',
+  passPct: '70',
+  recruiterEmail: '',
+}
+
+function Field({ label, name, type = 'text', placeholder, value, onChange, error }) {
+  return (
+    <div>
+      <label className="block text-sm font-medium mb-2">
+        {label} <span className="text-accent">*</span>
+      </label>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        min={type === 'number' ? 0 : undefined}
+        className="w-full bg-surface border border-[#2A2A2A] focus:border-accent rounded-lg px-4 py-3 text-white placeholder-muted/50 outline-none transition-colors text-sm"
+      />
+      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+    </div>
+  )
+}
+
+export default function SetupForm({ onGenerate }) {
+  const [form, setForm] = useState(INITIAL)
+  const [errors, setErrors] = useState({})
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
+  }
+
+  const validate = () => {
+    const e = {}
+    if (!form.role.trim()) e.role = 'Required'
+    if (!form.topic.trim()) e.topic = 'Required'
+    if (!form.techStack.trim()) e.techStack = 'Required'
+    if (!form.minExp) e.minExp = 'Required'
+    if (!form.maxExp) e.maxExp = 'Required'
+    if (form.minExp && form.maxExp && Number(form.minExp) > Number(form.maxExp)) e.maxExp = 'Max must be greater than min'
+    if (!form.requiredLocation.trim()) e.requiredLocation = 'Required'
+    if (!form.passPct) e.passPct = 'Required'
+    if (!form.recruiterEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.recruiterEmail)) e.recruiterEmail = 'Valid email required'
+    return e
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const errs = validate()
+    if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    onGenerate(form)
+  }
+
+  return (
+    <div className="max-w-2xl mx-auto px-6 py-16">
+      <div className="text-center mb-10">
+        <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Recruiter Setup</p>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-2">Configure Your Screening</h2>
+        <p className="text-muted text-sm">Set your criteria once. Get a shareable link for candidates.</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <Field label="Job Role" name="role" placeholder="e.g. Product Manager" value={form.role} onChange={handleChange} error={errors.role} />
+        <Field label="MCQ Topic" name="topic" placeholder="e.g. Agile, Product Strategy, UX Research" value={form.topic} onChange={handleChange} error={errors.topic} />
+        <Field label="Tech Stack to Assess" name="techStack" placeholder="e.g. Jira, Figma, SQL, Google Analytics" value={form.techStack} onChange={handleChange} error={errors.techStack} />
+
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Min Experience (years)" name="minExp" type="number" placeholder="e.g. 2" value={form.minExp} onChange={handleChange} error={errors.minExp} />
+          <Field label="Max Experience (years)" name="maxExp" type="number" placeholder="e.g. 5" value={form.maxExp} onChange={handleChange} error={errors.maxExp} />
+        </div>
+
+        <Field label="Required Location" name="requiredLocation" placeholder="e.g. Texas" value={form.requiredLocation} onChange={handleChange} error={errors.requiredLocation} />
+
+        <div>
+          <label className="block text-sm font-medium mb-2">MCQ Pass Percentage <span className="text-accent">*</span></label>
+          <select
+            name="passPct"
+            value={form.passPct}
+            onChange={handleChange}
+            className="w-full bg-surface border border-[#2A2A2A] focus:border-accent rounded-lg px-4 py-3 text-white outline-none transition-colors text-sm"
+          >
+            {[50, 60, 70, 80, 90].map(p => (
+              <option key={p} value={p}>{p}%</option>
+            ))}
+          </select>
+        </div>
+
+        <Field label="Your Email (results will be sent here)" name="recruiterEmail" type="email" placeholder="you@company.com" value={form.recruiterEmail} onChange={handleChange} error={errors.recruiterEmail} />
+
+        <button
+          type="submit"
+          className="w-full bg-accent hover:bg-accent-dark text-white font-semibold py-3.5 rounded-lg transition-colors text-base mt-2"
+        >
+          Generate Shareable Link →
+        </button>
+      </form>
+    </div>
+  )
+}
