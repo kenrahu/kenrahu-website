@@ -8,7 +8,6 @@ const INITIAL = {
   maxExp: '',
   requiredLocation: '',
   passPct: '70',
-  recruiterEmail: '',
 }
 
 function Field({ label, name, type = 'text', placeholder, value, onChange, error }) {
@@ -51,7 +50,6 @@ export default function SetupForm({ onGenerate }) {
     if (form.minExp && form.maxExp && Number(form.minExp) > Number(form.maxExp)) e.maxExp = 'Max must be greater than min'
     if (!form.requiredLocation.trim()) e.requiredLocation = 'Required'
     if (!form.passPct) e.passPct = 'Required'
-    if (!form.recruiterEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.recruiterEmail)) e.recruiterEmail = 'Valid email required'
     return e
   }
 
@@ -95,8 +93,6 @@ export default function SetupForm({ onGenerate }) {
             ))}
           </select>
         </div>
-
-        <Field label="Your Email (results will be sent here)" name="recruiterEmail" type="email" placeholder="you@company.com" value={form.recruiterEmail} onChange={handleChange} error={errors.recruiterEmail} />
 
         <button
           type="submit"

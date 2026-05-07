@@ -88,34 +88,6 @@ export default function CVScreeningAssessment() {
     if (!expPass) failReasons.push(`Experience (${profileData.expYears} yrs) is outside the required range of ${jobConfig.minExp}–${jobConfig.maxExp} years`)
     if (!locationPass) failReasons.push(`Location "${profileData.location}" does not match required "${jobConfig.requiredLocation}"`)
 
-    try {
-      await fetch('/api/send-screening-result', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          recruiterEmail: jobConfig.recruiterEmail,
-          candidateName: profileData.name,
-          candidateEmail: profileData.email,
-          role: jobConfig.role,
-          mcqScore,
-          mcqTotal: 10,
-          passPct: jobConfig.passPct,
-          expYears: profileData.expYears,
-          minExp: jobConfig.minExp,
-          maxExp: jobConfig.maxExp,
-          candidateLocation: profileData.location,
-          requiredLocation: jobConfig.requiredLocation,
-          salary: profileData.salary,
-          techQuestions: questions.techQuestions,
-          techAnswers,
-          verdict,
-          failReasons,
-        }),
-      })
-    } catch {
-      // Silent — candidate still sees thank you screen
-    }
-
     setStage(STAGES.thankyou)
   }
 

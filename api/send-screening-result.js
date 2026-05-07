@@ -73,7 +73,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'AI Screener <onboarding@resend.dev>',
+        from: 'AI Screener <screener@kenrahu.com>',
         to: [recruiterEmail],
         subject: `[${verdict}] ${candidateName} — ${role}`,
         html,
